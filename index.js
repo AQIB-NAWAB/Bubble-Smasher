@@ -39,6 +39,7 @@ function removeAllBubbles() {
   resetBtn.click();
   resetBtn.click();
   resetBtn.click();
+  currentGameSpeed=2;
 }
 
 playBtn.addEventListener("click", () => {
@@ -54,7 +55,13 @@ resetBtn.addEventListener("click", () => {
 playGround.addEventListener("click", (e) => {
   if (gameMode == "start" && e.target.classList.contains("bubble")) {
     playGround.removeChild(e.target);
-    score++;
+    
+
+    if(e.target.style.backgroundColor ==  "red"){
+         score+=2;
+    }else{
+        score++;
+    }
     scoreText.innerHTML = "Score: " + score;
 
     if (Object.hasOwn(gameSpeed, score)) {
@@ -88,6 +95,7 @@ setInterval(() => {
         highScore = Math.max(score, highScore);
         highScoreText.innerHTML = "High Score: " + highScore;
         scoreText.innerHTML = "Score: " + 0;
+        currentGameSpeed=2;
         removeAllBubbles();
       }
     }
